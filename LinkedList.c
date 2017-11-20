@@ -6,6 +6,18 @@ typedef struct Node {
 	struct Node *next;
 } SLNode;
 
+void menu()
+{
+	printf("====================================\n");
+	printf("======  1. 初始化链表    ===========\n");
+	printf("======  2. 添加节点      ===========\n");
+	printf("======  3. 显示链表元素  ===========\n");
+	printf("======  4. 计算链表长度  ===========\n");
+	printf("======  5. 删除节点      ===========\n");
+	printf("======  6. 销毁链表      ===========\n");
+	printf("====================================\n");
+}
+
 void initList(SLNode ** head)
 {
 	if ((*head = (SLNode *) malloc(sizeof(SLNode))) == NULL) {
@@ -20,28 +32,42 @@ void insertList(SLNode * head)
 	int i;
 	SLNode *p, *q;
 	p = head;
-	head->data = 1;
 
-	for (i = 1; i < 10; i++) {
+	printf("输入头节点的值,-1代表输入结束：\n");
+	scanf("%d", &(head->data));
+
+	while (1) {
+		int j;
+		printf("输入节点的值（必须是整数）：\n");
+		scanf("%d", &j);
+		if (j == -1)
+			break;
+
 		if ((q = (SLNode *) malloc(sizeof(SLNode))) == NULL) {
 			printf("malloc failed!");
 			exit(-1);
 		}
+
+		q->data = j;
 		p->next = q;
-		q->data = i + 1;
 		q->next = NULL;
 		p = q;
 	}
+	printf("input finished,jump to next function.\n");
 }
 
 void displayList(SLNode * head)
 {
+	int i = 0;
 	SLNode *p = head;
 	while (p->next != NULL) {
 		printf("%d\n", p->data);
 		p = p->next;
+		i++;
 	}
+	i++;
 	printf("%d\n", p->data);
+	printf("如上共计 %d 个节点.\n", i);
 }
 
 void setList(SLNode * head, int index, int i)
@@ -52,11 +78,27 @@ void setList(SLNode * head, int index, int i)
 void main()
 {
 	SLNode *head;
+	menu();
+	while (1) {
+		int i;
+		printf("请输入你想要的功能:");
+		scanf("%d", &i);
 
-	initList(&head);
-	insertList(head);
-	displayList(head);
-//      destroyList();
+		switch (i) {
+		case 1:
+			initList(&head);
+			break;
 
+		case 2:
+			insertList(head);
+			break;
 
+		case 3:
+			displayList(head);
+			break;
+		default:
+			printf("error input\n");
+			break;
+		}
+	}
 }
