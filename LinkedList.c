@@ -33,12 +33,12 @@ void insertList(SLNode * head)
 	SLNode *p, *q;
 	p = head;
 
-	printf("输入头节点的值,-1代表输入结束：\n");
+	printf("输入头节点的值, -1 终止输入：\n");
 	scanf("%d", &(head->data));
 
 	while (1) {
 		int j;
-		printf("输入节点的值（必须是整数）：\n");
+		printf("输入节点的值, -1 终止输入：\n");
 		scanf("%d", &j);
 		if (j == -1)
 			break;
@@ -61,7 +61,7 @@ void displayList(SLNode * head)
 	int i = 0;
 	SLNode *p = head;
 	while (p->next != NULL) {
-		printf("%d\n", p->data);
+		printf("%d --> ", p->data);
 		p = p->next;
 		i++;
 	}
@@ -70,17 +70,19 @@ void displayList(SLNode * head)
 	printf("如上共计 %d 个节点.\n", i);
 }
 
-void setList(SLNode * head, int index, int i)
-{
+//void deleteNode(SLNode * head, int index)
+//{
 
-}
+//}
 
 void main()
 {
+	system("clear");
 	SLNode *head;
-	menu();
+//	menu();
 	while (1) {
 		int i;
+		menu();
 		printf("请输入你想要的功能:");
 		scanf("%d", &i);
 
