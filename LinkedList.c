@@ -25,6 +25,7 @@ void initList(SLNode ** head)
 		exit(-1);
 	}
 	(*head)->next = NULL;
+	printf("链表初始化成功！\n");
 }
 
 void insertList(SLNode * head)
@@ -70,22 +71,28 @@ void displayList(SLNode * head)
 	printf("如上共计 %d 个节点.\n", i);
 }
 
-//void deleteNode(SLNode * head, int index)
-//{
-
-//}
+int isEmpty(SLNode * head)
+{
+	if (NULL == head)
+		return 1;
+	else
+		return 0;
+}
 
 void main()
 {
+	int i;
 	system("clear");
-	SLNode *head;
-//	menu();
+	SLNode *head = NULL;
 	while (1) {
-		int i;
 		menu();
-		printf("请输入你想要的功能:");
-		scanf("%d", &i);
-
+		if (isEmpty(head)) {
+			printf("链表为空, 现在你只能选择初始化链表\n");
+			i = 1;
+		} else {
+			scanf("请输入你要的功能 %d\n ", &i);
+			printf("i = %d \n", i);
+		}
 		switch (i) {
 		case 1:
 			initList(&head);
@@ -101,6 +108,6 @@ void main()
 		default:
 			printf("error input\n");
 			break;
-		}
+		} 
 	}
 }
